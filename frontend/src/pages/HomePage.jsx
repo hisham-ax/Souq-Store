@@ -1,8 +1,9 @@
 import React, { useEffect, useReducer } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import logger from "use-reducer-logger";
-// import data from "../../../backend/data";
+import { Row, Col } from "react-bootstrap";
+import Product from "../component/Product.jsx";
+import Loading from "../component/Loading.jsx";
+import MessageBox from "../component/MessageBox.jsx";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCHREQUST":
@@ -18,17 +19,16 @@ const reducer = (state, action) => {
 const intialState = { products: [], loading: true, errors: "" };
 function HomePage() {
   const [{ products, loading, errors }, dispatch] = useReducer(
-    logger(reducer),
-    intialState
+    reducer,
+    intialState,
   );
-  // const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCHREQUST" });
-      const result = await axios.get("/api/products");
       try {
-        dispatch({ type: "FETCHSUCCESS", payload: result.data.products });
+        const result = await axios.get("/api/products");
+        dispatch({ type: "FETCHSUCCESS", payload: result.data });
       } catch (error) {
         dispatch({ type: "FETCHFAIL", payload: error.message });
       }
@@ -40,27 +40,21 @@ function HomePage() {
 
   return (
     <div>
+      <title>Souq</title>
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
-          <div>Lodding...</div>
+          <Loading />
         ) : errors ? (
-          <div>{errors.message} </div>
+          <MessageBox>{errors.message}</MessageBox>
         ) : (
-          products.map((product) => (
-            <div className="product" key={product.slug}>
-              <Link href={`/product/${product.slug}`}>
-                <img src={product.image} alt={product.name} />
-              </Link>
-              <div className="product-info">
-                <Link href={`/product/${product.slug}`}>
-                  <p>{product.name}</p>
-                </Link>
-                <p style={{ fontWeight: "bold" }}>{product.price}</p>
-                <button>Add To Cart</button>
-              </div>
-            </div>
-          ))
+          <Row>
+            {products.map((product) => (
+              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
         )}
       </div>
     </div>
