@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useReducer } from "react";
 import { CardBody, CardText, CardTitle, ListGroup } from "react-bootstrap";
 import { Store } from "../Store";
 import { Row, Col, Card } from "react-bootstrap";
-import { data, Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "../component/Loading";
 import { toast } from "react-toastify";
