@@ -1,0 +1,20 @@
+{
+  "name": "e-commerce",
+  "version": "1.0.0",
+  "description": "=> Souq Sotre",
+  "homepage": "https://github.com/hisham-ax/Souq-Store#readme",
+  "bugs": {
+    "url": "https://github.com/hisham-ax/Souq-Store/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hisham-ax/Souq-Store.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
