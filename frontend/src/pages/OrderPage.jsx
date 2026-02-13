@@ -41,7 +41,6 @@ function OrderPage() {
       order: {},
       error: "",
       successPay: false,
-      loadingPay: false,
     },
   );
   const navigate = useNavigate();
