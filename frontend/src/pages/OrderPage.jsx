@@ -32,16 +32,18 @@ const reducer = (state, action) => {
 };
 function OrderPage() {
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const { user } = state;
-  const [{ loading, error, order, successPay, loadingPay }, dispatch] =
-    useReducer(reducer, {
+  const [{ loading, error, order, successPay }, dispatch] = useReducer(
+    reducer,
+    {
       loading: true,
       order: {},
       error: "",
       successPay: false,
       loadingPay: false,
-    });
+    },
+  );
   const navigate = useNavigate();
   const params = useParams();
   const { id: orderId } = params;
