@@ -5,7 +5,7 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,7 @@
     "express": "^5.2.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.3",
+    "mongodb": "^6.21.0",
     "mongoose": "^8.21.0"
   },
   "devDependencies": {
