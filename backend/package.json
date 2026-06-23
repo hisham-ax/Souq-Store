@@ -8,7 +8,11 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+<<<<<<< HEAD
     "dev": "nodemon server.js",
+=======
+    "build": "webpack --mode production",
+>>>>>>> 9e04a58af91e6462aacb849c71241d1f26db9be9
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
