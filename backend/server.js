@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 //connected to database
 mongoose
-  .connect(process.env.MONGODB_URL_ATLAS)
+  .connect(process.env.MONGO_DATABASE_URI)
   .then(() => {
     console.log("connected to database");
   })
