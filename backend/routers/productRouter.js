@@ -5,7 +5,7 @@ import demoData from "../data.js"
 const productRouter = express.Router();
 
 productRouter.get("/", async (req, res) => {
-  const data = await Products.find();
+  // const data = await Products.find();
   res.send(demoData);
 });
 productRouter.get("/slug/:slug", async (req, res) => {
