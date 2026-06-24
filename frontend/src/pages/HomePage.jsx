@@ -28,7 +28,8 @@ function HomePage() {
       dispatch({ type: "FETCHREQUST" });
       try {
         const result = await axios.get("/api/products");
-        dispatch({ type: "FETCHSUCCESS", payload: result.data });
+        dispatch({ type: "FETCHSUCCESS", payload: result.data.products });
+        console.log(result);
       } catch (error) {
         dispatch({ type: "FETCHFAIL", payload: error.message });
       }

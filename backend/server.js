@@ -5,6 +5,7 @@ import seedRouter from "./routers/seedRouter.js";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
+import fakeData from "./data.js";
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 //connected to database
 mongoose
-  .connect(process.env.MONGO_DATABASE_URI)
+  .connect(process.env.MONGODB_URL_ATLAS)
   .then(() => {
     console.log("connected to database");
   })
@@ -29,7 +30,7 @@ app.get("/api/keys/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || "sb");
 });
 app.get("/", (req, res) => {
-  res.send("Backend is running");
+  res.send(fakeData);
 });
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
