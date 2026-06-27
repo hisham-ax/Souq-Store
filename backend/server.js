@@ -7,7 +7,9 @@ import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 
-import fakeData from "./data.js";
+import Products from "./models/ProductModel.js";
+
+// import fakeData from "./data.js";
 
 const app = express();
 //configure dot env
@@ -32,8 +34,9 @@ app.use("/api/orders", orderRouter);
 app.get("/api/keys/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || "sb");
 });
-app.get("/", (req, res) => {
-  res.send(fakeData);
+app.get("/", async (req, res) => {
+  const data = await Products.find();
+  res.send(data);
 });
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
