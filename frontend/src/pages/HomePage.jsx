@@ -27,14 +27,18 @@ function HomePage() {
     const fetchData = async () => {
       dispatch({ type: "FETCHREQUST" });
       try {
-        const result = await axios.get("/api/products");
+        const result = await axios.get(
+          `${process.env.REACT_APP_API_SERVER_URL}/api/products`,
+        );
+
         dispatch({ type: "FETCHSUCCESS", payload: result.data });
         console.log(result.data);
       } catch (error) {
         dispatch({ type: "FETCHFAIL", payload: error.message });
       }
     };
-
+    const envVariable = process.env.REACT_APP_API_SERVER_URL;
+    console.log(envVariable);
     fetchData();
   }, []);
   // console.log(products);

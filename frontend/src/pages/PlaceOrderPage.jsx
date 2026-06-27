@@ -56,7 +56,7 @@ function PlaceOrderPage() {
     dispatch({ type: "FETCH_REQUST" });
     try {
       const { data } = await axios.post(
-        "/api/orders",
+        `${process.env.REACT_APP_API_SERVER_URL}/api/orders`,
         {
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,

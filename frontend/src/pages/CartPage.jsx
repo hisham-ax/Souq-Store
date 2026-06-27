@@ -10,7 +10,9 @@ function CartPage() {
   const { state, dispatch } = useContext(Store);
   const { cartItems } = state.cart;
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/products/${item._id}`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_SERVER_URL}/api/products/${item._id}`,
+    );
     if (data.countInStock < quantity) {
       alert("Sorry this product is not found in stock");
       return;

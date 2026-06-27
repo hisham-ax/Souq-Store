@@ -61,7 +61,7 @@ function OrderPage() {
       try {
         dispatch({ type: "PAY_REQUEST" });
         const { data } = await axios.put(
-          `/api/orders/${order._id}/pay`,
+          `${process.env.REACT_APP_API_SERVER_URL}/api/orders/${order._id}/pay`,
           details,
           {
             headers: {
@@ -84,11 +84,14 @@ function OrderPage() {
     const fetchOrder = async () => {
       try {
         dispatch({ type: "FETCH_REQUST" });
-        const { data } = await axios.get(`/api/orders/${orderId}`, {
-          headers: {
-            authorization: `Souq ${user.token}`,
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_SERVER_URL}/api/orders/${orderId}`,
+          {
+            headers: {
+              authorization: `Souq ${user.token}`,
+            },
           },
-        });
+        );
         dispatch({ type: "FETCH_SUCCESS", payload: data });
         console.log(data);
       } catch (error) {
@@ -103,11 +106,14 @@ function OrderPage() {
       }
     } else {
       const loadingPaypalScript = async () => {
-        const { data: clintId } = await axios.get("/api/keys/paypal", {
-          headers: {
-            authorization: `Souq ${user.token}`,
+        const { data: clintId } = await axios.get(
+          `${process.env.REACT_APP_API_SERVER_URL}/api/keys/paypal`,
+          {
+            headers: {
+              authorization: `Souq ${user.token}`,
+            },
           },
-        });
+        );
         paypalDispatch({
           type: "resetOptions",
           value: {

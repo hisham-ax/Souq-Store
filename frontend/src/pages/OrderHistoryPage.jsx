@@ -33,11 +33,14 @@ function OrderHistoryPage() {
     dispatch({ type: "FETCH_REQUST" });
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("/api/orders/mine", {
-          headers: {
-            Authorization: `Souq ${user.token}`,
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_SERVER_URL}/api/orders/mine`,
+          {
+            headers: {
+              Authorization: `Souq ${user.token}`,
+            },
           },
-        });
+        );
         dispatch({ type: "FETCH_SUCCESS", payload: data });
         console.log(data);
       } catch (error) {

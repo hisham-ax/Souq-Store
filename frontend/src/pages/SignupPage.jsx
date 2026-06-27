@@ -27,11 +27,14 @@ function SignupPage() {
         toast.error("Password and Confirm Password Not Matched");
         return;
       }
-      const { data } = await axios.post("/api/users/signup", {
-        name,
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_SERVER_URL}/api/users/signup`,
+        {
+          name,
+          email,
+          password,
+        },
+      );
       ctxDispatch({ type: "USER_SIGNUP", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate(redirect || "/");
