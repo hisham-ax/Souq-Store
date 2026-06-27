@@ -10,12 +10,12 @@ import orderRouter from "./routers/orderRouter.js";
 import fakeData from "./data.js";
 
 const app = express();
+//configure dot env
+dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-//configure dot env
-dotenv.config();
 //connected to database
 mongoose
   .connect(process.env.MONGODB_URL_ATLAS)

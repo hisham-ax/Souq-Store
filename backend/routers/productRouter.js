@@ -1,11 +1,11 @@
 import express from "express";
 import Products from "../models/ProductModel.js";
-import demoData from "../data.js";
+// import demoData from "../data.js";
 const productRouter = express.Router();
 
 productRouter.get("/", async (req, res) => {
-  // const data = await Products.find();
-  res.send(demoData);
+  const data = await Products.find();
+  res.send(data);
 });
 productRouter.get("/slug/:slug", async (req, res) => {
   const product = await Products.findOne({ slug: req.params.slug });
