@@ -27,7 +27,7 @@ function HomePage() {
     const fetchData = async () => {
       dispatch({ type: "FETCHREQUST" });
       try {
-        const result = await axios.get("/api/products");
+        const result = await axios.get("https://souq-store-serv.vercel.app/api/products");
         dispatch({ type: "FETCHSUCCESS", payload: result.data });
         console.log(result.data);
       } catch (error) {
